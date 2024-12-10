@@ -1,0 +1,8 @@
+Package: BoolStats
+Type: Application
+Title: My Shiny App
+Version: 1.0
+Depends:
+    R (>= 4.3.1),
+    shiny
+
