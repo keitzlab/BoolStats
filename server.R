@@ -202,110 +202,17 @@ server <- function(input, output, session) {
     })
     
 
-# Define data for all groups
-group_0_values <- data.frame(
-  Cohesiveness = c(0.63084018, 0.60760225, 0.70867431, 0.76171417, 0.68765895, 0.55506384, 
-                   0.67087006, 0.71119724, 0.64567328, 0.77856886, 0.6999246, 0.70810002, 
-                   0.63429956, 0.65397232, 0.64081114, 0.70300344, 0.69156204, 0.68616423, 
-                   0.7751615, 0.65113182, 0.69943214, 0.6889828, 0.7426313, 0.67668494, 
-                   0.67141735, 0.65588511, 0.72586196, 0.71770221, 0.77108294, 0.72778724, 
-                   0.65756189, 0.5423235, 0.65412642, 0.69159894, 0.55123382, 0.64198646, 
-                   0.58696167, 0.7580417, 0.62129139),
-  DynamicRange = c(0.93617205, 0.95755295, 0.953, 0.936, 0.92426961, 0.913, 0.91378795, 
-                   0.83632116, 0.91408597, 0.97910842, 0.86974978, 0.89389441, 0.89634654, 
-                   0.90755092, 0.9933802, 0.96419745, 0.97611177, 0.97951844, 0.99572514, 
-                   0.86131846, 0.87565949, 0.99697257, 0.89860148, 0.99218328, 0.99400354, 
-                   0.97890526, 0.95686535, 0.97273756, 0.90151116, 0.87348491, 0.87084616, 
-                   0.97584416, 0.98101698, 0.96713793, 0.97629249, 0.98297147, 0.92350791, 
-                   0.94101739, 0.90351831)
-)
-
-group_1_values <- data.frame(
-  Cohesiveness = c(0.87525162, 0.83622562, 0.7346857, 0.77321747, 0.81144076, 0.75147789, 
-                   0.9069946, 0.75827261, 0.68348237, 0.84056915, 0.70588235, 0.87626294, 
-                   0.89306429, 0.89961408, 0.75075746),
-  DynamicRange = c(0.48914775, 0.73724715, 0.53095118, 0.79895604, 0.76242796, 0.69041065, 
-                   0.60602888, 0.73394099, 0.68549049, 0.71918015, 0.66871537, 0.48609559, 
-                   0.7461144, 0.6000475, 0.75060483)
-)
-
-group_2_values <- data.frame(
-  Cohesiveness = c(0.61901401, 0.58300109, 0.59443567, 0.53247942, 0.76674738, 0.76842546, 
-                   0.67904012, 0.47217649, 0.61892182, 0.5248882, 0.5332618),
-  DynamicRange = c(0.15744935, 0.44520949, 0.05703153, 0.43618013, -0.0059246, 0.16696948, 
-                   0.03239561, 0.16050086, 0.26983898, 0.29899412, 0.30469175)
-)
-
-group_3_values <- data.frame(
-  Cohesiveness = c(0.24955616, 0.21179056, 0.05186908, 0.01196017, 0.06396005, 0.02122554, 
-                   0.21381322, 0.30526207, 0.02212403, 0.13453286, 0.14462649, 0.18871238, 
-                   0.11356602, 0.29013771, 0.26716445, 0.22214146),
-  DynamicRange = c(0.49612769, 0.61138335, 0.66103545, 0.68080696, 0.55153917, 0.52026401, 
-                   0.61732638, 0.74227435, 0.62033698, 0.68158299, 0.38853339, 0.7481203, 
-                   0.61858638, 0.65866329, 0.68615019, 0.6710011)
-)
-
-group_4_values <- data.frame(
-  Cohesiveness = c(0.89441605, 0.92739511, 0.9080192, 0.81550455, 0.87244165, 0.8459684, 
-                   0.81859826, 0.92741988, 0.96387952, 0.96448969, 0.92190572, 0.91607852, 
-                   0.78974031, 0.80244389, 0.86834565, 0.84740307, 0.81077597, 0.99775617, 
-                   0.82456699, 0.89082194, 0.93053874, 0.88897959, 0.84207298, 0.9121695, 
-                   0.91803279, 0.88046882, 0.93932593, 0.86188734, 0.87310207, 0.96169259, 
-                   0.80496823, 0.8371772, 0.82742833, 0.87127371, 0.96863501, 0.99281207, 
-                   0.86593758, 0.9780938, 0.99847547, 0.97115204, 0.97279882, 0.94036619, 
-                   0.95947717, 0.91080387, 0.93263996, 0.91179729, 0.84829338, 0.84345958, 
-                   0.82427081, 0.79309996),
-  DynamicRange = c(0.78838584, 0.97837588, 0.93661669, 0.84740053, 0.83576734, 0.857, 
-                   0.96319713, 0.99332046, 0.96693957, 0.92865525, 0.86692288, 0.8820922, 
-                   0.85810664, 0.92700676, 0.98994186, 0.99159299, 0.94752884, 0.98785938, 
-                   0.99697426, 0.96983187, 0.98393161, 0.94095695, 0.9881787, 0.84332101, 
-                   0.98593591, 0.93902647, 0.97622906, 0.9230018, 0.8183386, 0.84033276, 
-                   0.85553349, 0.91399065, 0.8922936, 0.99200029, 0.92446059, 0.99833252, 
-                   0.99818131, 0.85082867, 0.98920646, 0.98489495, 0.98334106, 0.97622906, 
-                   0.93171243, 0.92589975, 0.8457289, 0.89260136, 0.87063312, 0.8686713, 
-                   0.95513007, 0.96340958)
-)
-
-group_5_values <- data.frame(
-  Cohesiveness = c(0.53213292, 0.49067222, 0.48510095, 0.50391106, 0.43332591, 0.48856436, 
-                   0.58779905, 0.41699891, 0.5553002, 0.63292821, 0.58250997, 0.55403532, 
-                   0.49208644),
-  DynamicRange = c(0.78603776, 0.72435262, 0.73153036, 0.64290074, 0.82171356, 0.8195816, 
-                   0.7699221, 0.72551648, 0.85061244, 0.78293365, 0.79642221, 0.72849402, 
-                   0.63270512)
-)
-
-# Add the calculated group (dynamic range) in orange
-calculated_values <- data.frame(
-  Cohesiveness = cohesiveness_score, 
-  DynamicRange = dynamic_range,      
-  Group = "Calculated Group",
-  Color = "orange"
-)
-
-# Define gray shades for each group (light gray to dark gray)
-gray_shades <- c("Group 0" = "#D3D3D3", "Group 1" = "#B0B0B0", "Group 2" = "#8C8C8C", 
-                 "Group 3" = "#707070", "Group 4" = "#505050", "Group 5" = "#303030")
-
-# Combine all groups into one data frame for plotting
-all_groups_values <- rbind(
-  transform(group_0_values, Group = "Group 0", Color = gray_shades["Group 0"]),
-  transform(group_1_values, Group = "Group 1", Color = gray_shades["Group 1"]),
-  transform(group_2_values, Group = "Group 2", Color = gray_shades["Group 2"]),
-  transform(group_3_values, Group = "Group 3", Color = gray_shades["Group 3"]),
-  transform(group_4_values, Group = "Group 4", Color = gray_shades["Group 4"]),
-  transform(group_5_values, Group = "Group 5", Color = gray_shades["Group 5"])
-)
-
-# Combine all data
-all_data <- rbind(all_groups_values, calculated_values)
-
-# Plot the data
-ggplot(all_data, aes(x = Cohesiveness, y = DynamicRange, color = Group)) +
-  geom_point(size = 3) +
-  scale_color_manual(values = c(gray_shades, "Calculated Group" = "orange")) +
-  labs(title = "Cohesiveness Score vs Dynamic Range", x = "Cohesiveness Score", y = "Dynamic Range") +
-  theme_minimal() +
-  scale_x_continuous(limits = c(0, 1)) +  # Set x-axis range from 0 to 1
-  scale_y_continuous(limits = c(0, 1)) +   # Set y-axis range from 0 to 1
-  theme(legend.title = element_blank())
+output$cohesiveness_vs_dynamic <- renderPlot({
+  data_to_plot <- data.frame(
+    Cohesiveness = cohesiveness_score,
+    DynamicRange = dynamic_range
+  )
+  
+  ggplot(data_to_plot, aes(x = Cohesiveness, y = DynamicRange)) +
+    geom_point(color = "orange", size = 3) +
+    geom_smooth(method = "lm", se = FALSE, color = "red") +
+    labs(title = "Cohesiveness Score vs Dynamic Range", x = "Cohesiveness Score", y = "Dynamic Range") +
+    theme_minimal() +
+    scale_x_continuous(limits = c(0, 1)) +  # Set x-axis range from 0 to 1
+    scale_y_continuous(limits = c(0, 1))     # Set y-axis range from 0 to 1
+})
