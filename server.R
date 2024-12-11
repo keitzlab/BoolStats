@@ -213,8 +213,8 @@ server <- function(input, output, session) {
         geom_smooth(method = "lm", se = FALSE, color = "red") +
         labs(title = "Cohesiveness Score vs Dynamic Range", x = "Cohesiveness Score", y = "Dynamic Range") +
         theme_minimal() +
-        scale_x_continuous(limits = c(0, 1)) +  # Set x-axis range from 0 to 1
-        scale_y_continuous(limits = c(0, 1))     # Set y-axis range from 0 to 1
+        scale_x_continuous(limits = c(-0.5, 1.5)) +  # Set x-axis range from 0 to 1
+        scale_y_continuous(limits = c(-0.5, 1.5))     # Set y-axis range from 0 to 1
     })
     
   })
