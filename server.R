@@ -156,7 +156,7 @@ server <- function(input, output, session) {
     }
     
     # Calculate dynamic range
-    dynamic_range <- group_avgs[ranked_groups[4]] - group_avgs[ranked_groups[1]]
+    dynamic_range <- 1 - (group_avgs[ranked_groups[1]] / group_avgs[ranked_groups[4]])
     
     # Display parsed results and cohesiveness score
     parsed_results <- paste(
