@@ -201,18 +201,21 @@ server <- function(input, output, session) {
         scale_fill_manual(values = c("chocolate1", "chocolate2", "chocolate3", "orange3"))
     })
     
-
-output$cohesiveness_vs_dynamic <- renderPlot({
-  data_to_plot <- data.frame(
-    Cohesiveness = cohesiveness_score,
-    DynamicRange = dynamic_range
-  )
-  
-  ggplot(data_to_plot, aes(x = Cohesiveness, y = DynamicRange)) +
-    geom_point(color = "orange", size = 3) +
-    geom_smooth(method = "lm", se = FALSE, color = "red") +
-    labs(title = "Cohesiveness Score vs Dynamic Range", x = "Cohesiveness Score", y = "Dynamic Range") +
-    theme_minimal() +
-    scale_x_continuous(limits = c(0, 1)) +  # Set x-axis range from 0 to 1
-    scale_y_continuous(limits = c(0, 1))     # Set y-axis range from 0 to 1
-})
+    # Plot cohesiveness score vs. dynamic range with axes limited from 0 to 1
+    output$cohesiveness_vs_dynamic <- renderPlot({
+      data_to_plot <- data.frame(
+        Cohesiveness = cohesiveness_score,
+        DynamicRange = dynamic_range
+      )
+      
+      ggplot(data_to_plot, aes(x = Cohesiveness, y = DynamicRange)) +
+        geom_point(color = "orange", size = 3) +
+        geom_smooth(method = "lm", se = FALSE, color = "red") +
+        labs(title = "Cohesiveness Score vs Dynamic Range", x = "Cohesiveness Score", y = "Dynamic Range") +
+        theme_minimal() +
+        scale_x_continuous(limits = c(0, 1)) +  # Set x-axis range from 0 to 1
+        scale_y_continuous(limits = c(0, 1))     # Set y-axis range from 0 to 1
+    })
+    
+  })
+}
