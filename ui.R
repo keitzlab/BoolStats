@@ -74,9 +74,15 @@ ui <- fluidPage(
     "))
   ),
   
-  titlePanel(
-    h1("A Linear Mixed Effects Model for Evaluating Synthetic Gene Circuits", align = "center")
-  ),
+ titlePanel(
+  div(
+    h1("A Linear Mixed Effects Model for Evaluating Synthetic Gene Circuits", align = "center"),
+    tags$p(
+      style = "text-align: center; font-size: 16px; color: #FFFFFF; margin-top: 10px;",
+      "Gina Partipilo*, Sarah M. Coleman*, Yang Gao, Ismar E. Miniel Mahfoud, Claus O. Wilke, Hal S. Alper^+ , Benjamin K. Keitz^+"
+    )
+  )
+)
   
   sidebarLayout(
     sidebarPanel(
