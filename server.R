@@ -4,7 +4,7 @@ library(lme4)
 library(multcomp)
 library(ggplot2)
 library(grDevices)
-library(dplyr)  # Optional, in case you're doing additional data manipulation
+library(dplyr) 
 server <- function(input, output, session) {
   
   # Reactive values for storing expected values based on logic
@@ -45,7 +45,7 @@ server <- function(input, output, session) {
     req(results_input$data)
     req(!analysis_started())  # Only show table if analysis is not started
     
-    group_colors <- c("chocolate1", "chocolate2", "chocolate3", "orange3")
+    group_colors <- c("gray1", "gray5", "gray7", "gray14")
     
     group_colors_hex <- sapply(group_colors, function(color) {
       rgb_vals <- col2rgb(color)
@@ -198,11 +198,11 @@ server <- function(input, output, session) {
         geom_errorbar(aes(ymin = Average - SD, ymax = Average + SD), width = 0.25, color = "black") +
         labs(title = "Group Averages with Error Bars", x = "Group", y = "Average Value") +
         theme_minimal() +
-        scale_fill_manual(values = c("chocolate1", "chocolate2", "chocolate3", "orange3"))
+        scale_fill_manual(values = c("steelblue", "royalblue", "deepskyblue", "dodgerblue"))
     })
     
     output$cohesiveness_vs_dynamic <- renderPlot({
-      # Your existing data
+      
       data_to_plot_1 <- data.frame(
         Cohesiveness = cohesiveness_score,
         DynamicRange = dynamic_range,
@@ -261,9 +261,41 @@ server <- function(input, output, session) {
         theme_minimal() +
         scale_x_continuous(limits = c(0, 1)) +  # Set x-axis range from 0 to 1
         scale_y_continuous(limits = c(0, 1)) +   # Set y-axis range from 0 to 1
-        scale_color_manual(values = c("gray", "orange"))  # Customize colors
+        scale_color_manual(values = c("gray", "dodgerblue"))  # Customize colors
     })
     
+    output$download_pdf <- downloadHandler(
+      filename = function() {
+        paste("analysis_report_", Sys.Date(), ".pdf", sep = "")
+      },
+      content = function(file) {
+        pdf(file, width = 8, height = 10)
+        
+        # Add parsed results
+        grid::grid.text(parsed_results, x = 0.5, y = 0.95, just = "center", gp = grid::gpar(fontsize = 12))
+        
+        # Print the table
+        gridExtra::grid.table(model_data)
+        
+        # Print the plot
+        print(ggplot(data.frame(Group = factor(1:4), Average = group_avgs, SD = group_sd), 
+                     aes(x = Group, y = Average, fill = Group)) +
+                geom_bar(stat = "identity", position = "dodge", color = "black", width = 0.7) +
+                geom_errorbar(aes(ymin = Average - SD, ymax = Average + SD), width = 0.25, color = "black") +
+                labs(title = "Group Averages with Error Bars", x = "Group", y = "Average Value") +
+                theme_minimal() +
+                scale_fill_manual(values = c("steelblue", "royalblue", "deepskyblue", "dodgerblue")))
+        
+        # Add the cohesiveness vs dynamic range plot
+        print(ggplot(combined_data, aes(x = Cohesiveness, y = DynamicRange, color = Dataset)) +
+                geom_point() +
+                geom_smooth(method = "lm", se = FALSE, aes(color = Dataset)) +
+                labs(title = "Cohesiveness vs. Dynamic Range", x = "Cohesiveness", y = "Dynamic Range") +
+                theme_minimal())
+        
+        dev.off()
+      }
+    )
     
   })
 }
