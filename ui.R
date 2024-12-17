@@ -71,18 +71,55 @@ ui <- fluidPage(
         background-color: #BF5700;
         color: white;
       }
+      .citation {
+        font-size: 12px;
+        color: #000000;
+        text-align: center;
+        margin-top: 30px;
+      }
     "))
   ),
   
- titlePanel(
-  div(
-    h1("A Linear Mixed Effects Model for Evaluating Synthetic Gene Circuits", align = "center"),
-    tags$p(
-      style = "text-align: center; font-size: 16px; color: #FFFFFF; margin-top: 10px;",
-      "Gina Partipilo*, Sarah M. Coleman*, Yang Gao, Ismar E. Miniel Mahfoud, Claus O. Wilke, Hal S. Alper^+ , Benjamin K. Keitz^+"
+  titlePanel(
+    div(
+      h1(
+        "A Linear Mixed Effects Model for Evaluating Synthetic Gene Circuits", 
+        align = "center"
+      ),
+      tags$p(
+        style = "text-align: center; font-size: 16px; color: #000000; margin-top: 10px; font-weight: normal;",
+        HTML(
+          "Gina Partipilo*, Sarah M. Coleman*, Yang Gao, Ismar E. Miniel Mahfoud, Claus O. Wilke, 
+        <u>Hal S. Alper</u>, <u>Benjamin K. Keitz</u>"
+        )
+      ),
+      tags$p(
+        style = "text-align: center; font-size: 12px; color: #000000; margin-top: 5px;",
+        "* Denotes co-author contribution"
+      ),
+      tags$p(
+        style = "text-align: center; font-size: 12px; color: #000000; margin-top: -5px;",
+        "Corresponding authors underlined"
+      ),
+      div(
+        style = "
+        background-color: #FFFFFF; 
+        color: #333333; 
+        border: 2px solid #BF5700; 
+        border-radius: 10px; 
+        padding: 10px; 
+        margin-top: 20px; 
+        width: 60%; 
+        margin-left: auto; 
+        margin-right: auto;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);",
+        tags$p(
+          style = "text-align: center; font-size: 14px; font-weight: normal; margin: 0;",
+          "Select your logic type and number of replicates used. Generate the data input table and enter your experimental values. Run analysis to run the linear mixed effects model, graph your output, and visualize your gate's performance in relation to 144 others."
+        )
+      )
     )
-  )
-)
+  ),
   
   sidebarLayout(
     sidebarPanel(
@@ -124,5 +161,11 @@ ui <- fluidPage(
       # New plot for cohesiveness score vs dynamic range
       plotOutput("cohesiveness_vs_dynamic", height = "400px")
     )
+  ),
+  
+  # Citation at the bottom of the page
+  tags$div(
+    class = "citation",
+    HTML("Bates, D. M. Lme4: Mixed-Effects Modeling with R. 2010.")
   )
 )
