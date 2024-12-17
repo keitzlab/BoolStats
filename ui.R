@@ -2,30 +2,30 @@ ui <- fluidPage(
   tags$head(
     tags$style(HTML("
       body {
-        background-color: #BF5700; /* Burnt orange background */
+        background-color: #1E90FF; /* Dodgerblue background */
         color: #FFFFFF; /* White text */
         font-family: 'Helvetica', sans-serif; /* Clean font */
       }
       .container-fluid {
-        background-color: #FFFFFF; /* White card background */
-        color: #333333; /* Neutral text for readability */
+        background-color: #F0F0F0; /* Light gray card background */
+        color: #333333; /* Dark gray text for readability */
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
       }
       .btn {
-        background-color: #BF5700; /* Burnt orange buttons */
+        background-color: #1E90FF; /* Dodgerblue buttons */
         color: #FFFFFF;
         border: none;
         border-radius: 5px;
         margin-bottom: 10px; /* Add space between buttons */
       }
       .btn:hover {
-        background-color: #A94400; /* Slightly darker burnt orange on hover */
+        background-color: #4682B4; /* Steelblue on hover */
         color: #FFFFFF;
       }
       .btn:active {
-        background-color: #8A3700; /* Even darker burnt orange on click */
+        background-color: #5B8FB9; /* Slightly darker blue on click */
       }
       h1, h2, h3, h4, h5, h6 {
         font-weight: bold;
@@ -39,23 +39,23 @@ ui <- fluidPage(
       }
       .selectize-input {
         background-color: #FFFFFF; /* White dropdown */
-        color: #333333; /* Neutral text */
+        color: #333333; /* Dark gray text */
       }
       .group-box {
-        background-color: #FFFFFF; /* White background for group boxes */
-        border: 2px solid #BF5700; /* Burnt orange border */
+        background-color: #F0F0F0; /* Light gray background for group boxes */
+        border: 2px solid #1E90FF; /* Dodgerblue border */
         border-radius: 10px;
         padding: 15px;
         margin-bottom: 20px;
-        color: #333333; /* Neutral text for readability */
+        color: #333333; /* Dark gray text for readability */
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
       }
       .output-box {
-        background-color: #FFFFFF; /* White background for output */
-        border: 2px solid #BF5700; /* Burnt orange border */
+        background-color: #F0F0F0; /* Light gray background for output */
+        border: 2px solid #1E90FF; /* Dodgerblue border */
         border-radius: 10px;
         padding: 15px;
-        color: #333333; /* Neutral text */
+        color: #333333; /* Dark gray text */
         font-family: 'Courier New', monospace; /* Console-like font for output */
       }
       .table {
@@ -68,12 +68,12 @@ ui <- fluidPage(
         border: 1px solid #ddd;
       }
       .table th {
-        background-color: #BF5700;
+        background-color: #1E90FF;
         color: white;
       }
       .citation {
         font-size: 12px;
-        color: #000000;
+        color: #333333;
         text-align: center;
         margin-top: 30px;
       }
@@ -105,7 +105,7 @@ ui <- fluidPage(
         style = "
         background-color: #FFFFFF; 
         color: #333333; 
-        border: 2px solid #BF5700; 
+        border: 2px solid #1E90FF; 
         border-radius: 10px; 
         padding: 10px; 
         margin-top: 20px; 
@@ -159,7 +159,10 @@ ui <- fluidPage(
       plotOutput("bar_plot", height = "400px"),
       
       # New plot for cohesiveness score vs dynamic range
-      plotOutput("cohesiveness_vs_dynamic", height = "400px")
+      plotOutput("cohesiveness_vs_dynamic", height = "400px"),
+      
+      # Download Button
+      downloadButton("download_pdf", "Download Report", class = "btn")
     )
   ),
   
