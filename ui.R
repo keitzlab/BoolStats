@@ -161,8 +161,7 @@ ui <- fluidPage(
       # New plot for cohesiveness score vs dynamic range
       plotOutput("cohesiveness_vs_dynamic", height = "400px"),
       
-      # Download Button
-      downloadButton("download_pdf", "Download Report", class = "btn")
+    
     )
   ),
   
