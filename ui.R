@@ -129,8 +129,7 @@ ui <- fluidPage(
       selectInput("logic", "Choose Logical Operation", 
                   choices = c("OR", "NOR", "AND", "NAND","XOR","XNOR","IMPLY", "NIMPLY")),
       numericInput("n_samples", "Number of Samples per Group", value = 5, min = 1),
-      actionButton("submit", "Generate Data Input Table", class = "btn"),
-      actionButton("run_analysis", "Run Analysis", class = "btn")
+      actionButton("submit", "Generate Data Input Table", class = "btn")
     ),
     
     mainPanel(
@@ -138,6 +137,10 @@ ui <- fluidPage(
       
       # Display dynamic table for results input
       uiOutput("dynamic_table"),
+      br(),
+      
+      # Move "Run Analysis" button beneath the data entry table
+      actionButton("run_analysis", "Run Analysis", class = "btn"),
       br(),
       
       # Display static table after analysis
@@ -161,7 +164,6 @@ ui <- fluidPage(
       # New plot for cohesiveness score vs dynamic range
       plotOutput("cohesiveness_vs_dynamic", height = "400px"),
       
-    
     )
   ),
   
