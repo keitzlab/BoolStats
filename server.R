@@ -5,6 +5,7 @@ library(multcomp)
 library(ggplot2)
 library(grDevices)
 library(dplyr) 
+
 server <- function(input, output, session) {
   
   # Reactive values for storing expected values based on logic
@@ -110,6 +111,17 @@ server <- function(input, output, session) {
     
     # Statistical modeling and hypothesis testing
     model <- lmer(Results ~ Expected + (1 | Group), data = model_data)
+    
+    # Check for singular fit and if so refit model
+    Singular <- isSingular(model)
+    if (Singular){ # refit without random effects (note this uses lm, not lmer)
+      model <- lm(Results ~ Expected, data = model_data)
+      singularText <- 'The fitted model is singular.\nThe random effects structure has been dropped and the model refit.\n The test was performed on the refit model.\n\n'
+    } else {
+      singularText <- 'The fitted model is not singular.\n\n'
+    }
+    
+    
     test <- glht(model, linfct = c("Expected == 0"))
     
     # Capture the console output for the analysis
@@ -161,6 +173,8 @@ server <- function(input, output, session) {
     # Display parsed results and cohesiveness score
     parsed_results <- paste(
       "=== Analysis Results ===\n\n",
+      "Model fit:\n",
+      singularText,
       "Test Summary:\n",
       paste("Estimate/Beta: ", estimate, "\n"),
       paste("Standard Error: ", std_error, "\n"),

@@ -89,7 +89,7 @@ ui <- fluidPage(
       tags$p(
         style = "text-align: center; font-size: 16px; color: #000000; margin-top: 10px; font-weight: normal;",
         HTML(
-          "Gina Partipilo*, Sarah M. Coleman*, Yang Gao, Ismar E. Miniel Mahfoud, Claus O. Wilke, 
+          "Gina Partipilo*, Sarah M. Coleman*, Alexis J. Holwerda, Yang Gao, Ismar E. Miniel Mahfoud, Claus O. Wilke, 
         <u>Hal S. Alper</u>, <u>Benjamin K. Keitz</u>"
         )
       ),
@@ -128,7 +128,7 @@ ui <- fluidPage(
       # Inputs for number of samples and logical operation
       selectInput("logic", "Choose Logical Operation", 
                   choices = c("OR", "NOR", "AND", "NAND","XOR","XNOR","IMPLY", "NIMPLY")),
-      numericInput("n_samples", "Number of Samples per Group", value = 5, min = 1),
+      numericInput("n_samples", "Number of Samples per Group (minimum 2)", value = 5, min = 2),
       actionButton("submit", "Generate Data Input Table", class = "btn")
     ),
     
