@@ -1,4 +1,5 @@
 ui <- fluidPage(
+  title="BoolStats",
   tags$head(
     tags$style(HTML("
       body {
